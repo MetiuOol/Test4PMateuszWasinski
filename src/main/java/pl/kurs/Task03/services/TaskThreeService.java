@@ -32,7 +32,7 @@ public class TaskThreeService {
     }
 
     public static List<Integer> getListOf5BiggestElements(List<Integer> integerList) {
-        if (integerList.size() < 5) {
+        if (integerList == null || integerList.size() < 5) {
             return new ArrayList<>();
         }
         return integerList.stream()
