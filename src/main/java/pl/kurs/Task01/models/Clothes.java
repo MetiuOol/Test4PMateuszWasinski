@@ -1,16 +1,15 @@
 package pl.kurs.Task01.models;
 
-import java.util.Comparator;
 import java.util.Objects;
 
-public class Ubranie implements Comparable<Ubranie> {
+public class Clothes implements Comparable<Clothes> {
     private String name;
     private Size size;
     private double prize;
-    private static Kryterium aktualneKryterium = Kryterium.ROZMIAR;
+    private static Criterion currentCriterion = Criterion.SIZE;
     ;
 
-    public Ubranie(String name, Size size, double prize) {
+    public Clothes(String name, Size size, double prize) {
         this.name = name;
         this.size = size;
         this.prize = prize;
@@ -32,8 +31,8 @@ public class Ubranie implements Comparable<Ubranie> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ubranie ubranie = (Ubranie) o;
-        return Double.compare(ubranie.prize, prize) == 0 && Objects.equals(name, ubranie.name) && size == ubranie.size;
+        Clothes clothes = (Clothes) o;
+        return Double.compare(clothes.prize, prize) == 0 && Objects.equals(name, clothes.name) && size == clothes.size;
     }
 
     @Override
@@ -44,22 +43,22 @@ public class Ubranie implements Comparable<Ubranie> {
 
     @Override
     public String toString() {
-        return "Ubranie{" +
+        return "Clothes{" +
                 "name='" + name + '\'' +
                 ", size=" + size +
                 ", prize=" + prize +
                 '}';
     }
 
-    public static void ustalKryteriumSortowania(Kryterium kryterium) {
-        aktualneKryterium = kryterium;
+    public static void setSortingCriterion(Criterion criterion) {
+        currentCriterion = criterion;
     }
 
     @Override
-    public int compareTo(Ubranie o) {
-        return switch (aktualneKryterium) {
-            case WARTOSC -> Double.compare(this.prize, o.prize);
-            case ROZMIAR -> this.size.compareTo(o.size);
+    public int compareTo(Clothes o) {
+        return switch (currentCriterion) {
+            case VALUE -> Double.compare(this.prize, o.prize);
+            case SIZE -> this.size.compareTo(o.size);
         };
     }
 }
