@@ -1,41 +1,31 @@
 package pl.kurs.Task03.app;
 
-import pl.kurs.Task03.exceptions.InvalidPeselException;
-
-import static pl.kurs.Task03.services.TaskThreeService.findDateOfBornFromPesel;
 import static pl.kurs.Task03.services.TaskThreeService.getListOf5BiggestElements;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Scanner;
+import static pl.kurs.Task03.services.TaskThreeService.lengthOfName;
+import static pl.kurs.Task03.services.TaskThreeService.dateOfBornFromPesel;
+import java.util.*;
 
 public class RunnerThree {
     public static void main(String[] args) {
 
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Podaj imię");
-//        String name = scanner.nextLine().trim();
-//        if (name.isEmpty()) {
-//            System.out.println(0);
-//        } else {
-//            System.out.println("Imię ma " + name.length() + " znaków.");
-//        }
-//
-//
-//        System.out.println("Podaj swój pesel");
-//        String pesel = scanner.next();
-//        try {
-//            LocalDate dateOfBornFromPesel = findDateOfBornFromPesel(pesel);
-//            System.out.println("Urodziłeś się " + dateOfBornFromPesel);
-//        } catch (InvalidPeselException e) {
-//            e.printStackTrace();
-//        }
-//        scanner.close();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj imię");
+        String name = scanner.nextLine().trim();
+        System.out.println("Imię ma " + lengthOfName(name) + " znaków.");
 
-        List<Integer> integerList = List.of(-124, 0 ,5 , 10 ,15);
-        System.out.println(getListOf5BiggestElements(integerList));
+
+        System.out.println("Podaj swój pesel");
+        String pesel = scanner.nextLine().trim();
+        System.out.println("Urodziłeś się " + dateOfBornFromPesel(pesel));
+        scanner.close();
+
+        List<Integer> integerList = Arrays.asList(-124, 0, 5, 10, 1, 3, 125, null);
+        List<Integer> integerList2 = Arrays.asList(-124, 0, 5, null, null);
+        System.out.println(getListOf5BiggestElements(integerList2));
 
     }
+
+
 
 
 }
